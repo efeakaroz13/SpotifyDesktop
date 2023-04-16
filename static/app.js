@@ -18,7 +18,7 @@ async function search(){
         small_image = element.images[0].url
 
         type = element.type
-        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='cover'  width='60'>"+"<div class='detailGroup'><a class='result_title'>"+name_item+"</a>"+"<br>"+artistText+"</div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
+        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='cover'  width='60'>"+"<div class='detailGroup'><a class='result_title' href='/playlist/"+element.id+"'>"+name_item+"</a>"+"<br>"+artistText+"</div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
         
     }
     //Artists
@@ -40,7 +40,7 @@ async function search(){
         
 
         type = element.type
-        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='artist-cover' width='50'>"+"<div class='detailGroup'><a class='result_title'>"+name_item+"</a>"+"<br><a class='artist_search'>Artist</a></div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
+        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='artist-cover' width='50'>"+"<div class='detailGroup'><a class='result_title' href='/artist/"+element.id+"'>"+name_item+"</a>"+"<br><a class='artist_search'>Artist</a></div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
         
     }
 
@@ -66,7 +66,7 @@ async function search(){
         small_image = element.album["images"][2].url
 
         type = element.type
-        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='cover' width='50'>"+"<div class='detailGroup'><a class='result_title'>"+name_item+"</a>"+"<br>"+artistText+"</div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
+        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='cover' width='50'>"+"<div class='detailGroup'><a class='result_title' href='/track/"+element.id+"'>"+name_item+"</a>"+"<br>"+artistText+"</div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
         
     }
 

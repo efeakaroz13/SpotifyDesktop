@@ -99,7 +99,7 @@ class MP3fy:
         except:
             print("Check your credentials")
             return False
-        response = sp.search(q=q,limit=15,type="track,artist,playlist")
+        response = sp.search(q=q,limit=8,type="track,artist,playlist")
         return response
 
 
