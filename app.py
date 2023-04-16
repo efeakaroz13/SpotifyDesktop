@@ -11,8 +11,11 @@ class API:
     @app.route("/api/search")
     def search_api():
         q = request.args.get("q")
+        q = q.strip()
         if q == None:
             return {"SCC":False}
+        if q == "":
+            return {"tracks":{"items":[]}}
         output = MP3fy.search(q)
         return output
 

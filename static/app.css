@@ -107,20 +107,40 @@ a.artist_search:hover{
     text-decoration: underline;
     transition:0.2s
 }
-.artist_search{
-    margin-left:5px;
-}
+
 a.result_title{
     font-size:20px;
+    width:80%;
     text-decoration: none;
 }
+
 li{
     text-decoration: none;
     margin:20px;
+    position:relative;
 }
 ul{
     list-style-type: none;
 }
 hr{
     color:white;
+}
+
+.cover{
+    margin-right:10px;
+    border-radius:2px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.detailGroup{
+    vertical-align: middle;
+    display: inline-block;
+}
+.artist-cover{
+    border-radius: 50%;
+    margin-right:10px;
+
+    vertical-align: middle;
+    display: inline-block;
 }

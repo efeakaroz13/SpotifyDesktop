@@ -99,8 +99,10 @@ class MP3fy:
         except:
             print("Check your credentials")
             return False
-        response = sp.search(q=q)
+        response = sp.search(q=q,limit=15,type="track,artist,playlist")
         return response
+
+
     def getAlbum(theurl):
         try:
             theval1 = theurl.split("https://open.spotify.com/album/")[1]

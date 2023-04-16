@@ -1,9 +1,54 @@
 async function search(){
+    document.getElementById("results").innerHTML = "<h3>Loading...</h3>";
+    
     query = document.getElementById("search").value
     response = await fetch("/api/search?q="+query)
     json_ = await response.json();
+    document.getElementById("results").innerHTML =""
+    //Playlists
+    items = json_.playlists.items;
+    items = items.slice(0, 2);
+    for (let i = 0; i < items.length; i++) {
+
+        const element = items[i];
+        
+        owner = element.owner
+        artistText = "<a href='/user/"+owner.id+"' class='artist_search' >"+owner.display_name+"</a>"
+        name_item = element.name;
+        small_image = element.images[0].url
+
+        type = element.type
+        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='cover'  width='60'>"+"<div class='detailGroup'><a class='result_title'>"+name_item+"</a>"+"<br>"+artistText+"</div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
+        
+    }
+    //Artists
+
+    items = json_.artists.items;
+    items = items.slice(0, 3);
+    for (let i = 0; i < items.length; i++) {
+
+        const element = items[i];
+
+
+        
+        name_item = element.name;
+        try{
+            small_image = element["images"][2].url
+        }catch{
+            small_image = ""
+        }
+        
+
+        type = element.type
+        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='artist-cover' width='50'>"+"<div class='detailGroup'><a class='result_title'>"+name_item+"</a>"+"<br><a class='artist_search'>Artist</a></div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
+        
+    }
+
+    //Tracks
+
     items = json_.tracks.items;
     for (let i = 0; i < items.length; i++) {
+
         const element = items[i];
         artistText = ""
         artists = element.artists
@@ -12,10 +57,16 @@ async function search(){
             name_ = current.name;
             id_ = current.id;
             artistText += "<a href='/artist/"+id_+"' class='artist_search' >"+name_+"</a>"
+            if (artists.length-1 != a) {
+                artistText += ", "
+                
+            }
         }
         name_item = element.name;
+        small_image = element.album["images"][2].url
 
-        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<a class='result_title'>"+name_item+"</a>"+"<br>"+artistText+"</li><hr>" 
+        type = element.type
+        document.getElementById("results").innerHTML =document.getElementById("results").innerHTML+"<li>"+"<img src='"+small_image+"' class='cover' width='50'>"+"<div class='detailGroup'><a class='result_title'>"+name_item+"</a>"+"<br>"+artistText+"</div>  <a style='position:absolute;right:10px;'>"+type+"</a></li><hr>" 
         
     }
 
