@@ -88,6 +88,22 @@ class MP3fy:
        
 
         return response
+    def getUser(userID):
+        config = json.loads(open("config.json", "r").read())
+
+        os.environ["SPOTIPY_CLIENT_ID"] = config["client_id"]
+        os.environ["SPOTIPY_CLIENT_SECRET"] = config["secretclient"]
+        try:
+            sp = spotipy.Spotify(client_credentials_manager=SpotifyClientCredentials())
+        except:
+            print("Check your credentials")
+            return False
+
+        offset = 0
+
+        response = sp.user(userID)
+
+        return response
 
     def search(q):
         config = json.loads(open("config.json","r").read())

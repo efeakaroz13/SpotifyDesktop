@@ -1,4 +1,6 @@
+document.getElementById("results").style.display = "none";
 async function search(){
+    document.getElementById("results").style.display = "";
     document.getElementById("results").innerHTML = "<h3>Loading...</h3>";
     
     query = document.getElementById("search").value
@@ -70,4 +72,43 @@ async function search(){
         
     }
 
+}
+
+
+function loadPL(data_string){
+
+    data= JSON.parse(data_string);
+    console.log(data)
+    items = data.tracks.items;
+    document.getElementById("pl").innerHTML = ""
+    for (let i = 0; i < items.length; i++) {
+
+        const element = items[i]["track"];
+        artistText = ""
+        artists = element.artists
+        for(a in artists){
+            current = artists[a];
+            name_ = current.name;
+            id_ = current.id;
+            artistText += "<a href='/artist/"+id_+"' class='artist_search' >"+name_+"</a>"
+            if (artists.length-1 != a) {
+                artistText += ", "
+
+            }
+        }
+        name_item = element.name;
+        small_image = element.album["images"][2].url
+
+        type = element.type
+        time_min = Math.floor(element.duration_ms/60000)
+        time_sec = Math.floor((element.duration_ms/60000 - time_min)*60)
+        if(time_sec<10){
+        time_sec = "0"+time_sec
+        }
+        document.getElementById("pl").innerHTML =document.getElementById("pl").innerHTML+"<li>"+"<img src='"+small_image+"' class='cover' width='50'>"+"<div class='detailGroup'><a class='result_title' id='"+element.id+"'>"+name_item+"</a>"+"<br>"+artistText+"</div>  <a style='position:absolute;right:10px;'>"+time_min+":"+time_sec+"</a></li><hr>"
+
+    }
+}
+if (window.location.href.includes("/playlist")){
+    loadPL(document.getElementById("pl").innerHTML);
 }

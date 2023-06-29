@@ -1,0 +1,13 @@
+{%extends "base.html"%}
+{% block title %}{{data["name"]}}{% endblock %}
+{% block title2 %}{{data["name"]}}{% endblock %}
+
+{% block body %}
+<center><img src="{{data['images'][0]['url']}}"/><p>{{data['description']}} <br>by <a style="color:white;text-decoration:none; " href="/user/{{data['owner']['id']}}"><strong>{{data['owner']['display_name']}}</strong><br></a>{{data["tracks"]["items"] |length}} Songs</p></center>
+<ul id="pl" onload="loadPL('{{ds}}')">
+    {{dumps(data,indent=4)}}
+</ul>
+<script src="/static/app.js"></script>
+
+
+{%  endblock %}
