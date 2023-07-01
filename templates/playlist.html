@@ -3,7 +3,7 @@
 {% block title2 %}{{data["name"]}}{% endblock %}
 
 {% block body %}
-<center><img src="{{data['images'][0]['url']}}"/><p>{{data['description']}} <br>by <a style="color:white;text-decoration:none; " href="/user/{{data['owner']['id']}}"><strong>{{data['owner']['display_name']}}</strong><br></a>{{data["tracks"]["items"] |length}} Songs</p></center>
+<center><img src="{{data['images'][0]['url']}}"/><p>{{data['description']}} <br>by <a style="color:white;text-decoration:none; " href="/user/{{data['owner']['id']}}"><strong>{{data['owner']['display_name']}}</strong><br></a>{{data["tracks"]["items"] |length}} Songs</p><br><button id="play"><i class="fa-solid fa-play"></i></button></center>
 <ul id="pl" onload="loadPL('{{ds}}')">
     {{dumps(data,indent=4)}}
 </ul>
